@@ -7,7 +7,8 @@
 
 	<!-- Stylesheets
 	============================================= -->
-	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Roboto:300,400,500,700|Playfair+Display:400,400italic,700,700italic,900" rel="stylesheet" type="text/css" />
+	<link rel="preload" href="fonts/google/PlayfairDisplay-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+	<link rel="stylesheet" href="css/google-fonts.css" type="text/css" />
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="style.css" type="text/css" />
 	<link rel="stylesheet" href="css/swiper.css" type="text/css" />
@@ -27,19 +28,37 @@
 	<link rel="stylesheet" href="css/animate.css" type="text/css" />
 	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
 
-	<link rel="stylesheet" href="demos/real-estate/css/font-icons.css" type="text/css" />
-
 	<link rel="stylesheet" href="one-page/css/fonts.css" type="text/css" />
 
 	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="css/colors.php?color=AC4147" type="text/css" />
+	<link rel="preload" href="one-page/images/page/outdoor.jpg" as="image" fetchpriority="high" />
 
 	<!-- Document Title
 	============================================= -->
 	<title>Tao Getaway - Retreats</title>
 
 	<style>
+		/* images got intrinsic width/height attributes (CLS); keep the old height:auto sizing */
+		img[width][height] { height: auto; }
+
+		/* First-paint layout = final layout. functions.js (verticalMiddle, responsiveClasses)
+		   used to move the hero text out of the flow and pull the next section up after the
+		   first paint; the page hid that behind a spinner until window.load. Same result here
+		   in CSS, until the script has set its inline margin-top. */
+		#slider .vertical-middle:not([style*="margin-top"]) {
+			position: absolute;
+			top: 50%;
+			width: 100%;
+			padding-top: 0;
+			padding-bottom: 0;
+			transform: translateY(-50%);
+		}
+
+		@media (min-width: 992px) {
+			.onepage-outdoor-negetive { margin-top: -300px; }
+		}
+
 		.play-icon {
 			position: relative;
 			display: block;
@@ -85,7 +104,7 @@
 
 </head>
 
-<body class="stretched light">
+<body class="stretched light no-transition">
 
 	<!-- Document Wrapper
 	============================================= -->
@@ -170,7 +189,7 @@
 
 									<div class="team">
 										<div class="team-image">
-											<img src="one-page/images/outdoor/1.jpg" alt="John Doe">
+											<img src="one-page/images/outdoor/1.jpg" alt="John Doe" width="450" height="650" decoding="async">
 										</div>
 										<div class="overlay">
 											<div class="text-overlay">
@@ -190,7 +209,7 @@
 
 									<div class="team">
 										<div class="team-image">
-											<img src="one-page/images/outdoor/2.jpg" alt="Josh Thompson">
+											<img src="one-page/images/outdoor/2.jpg" alt="Josh Thompson" width="450" height="650" decoding="async">
 										</div>
 										<div class="overlay">
 											<div class="text-overlay">
@@ -210,7 +229,7 @@
 
 									<div class="team">
 										<div class="team-image">
-											<img src="one-page/images/outdoor/3.jpg" alt="Mary Jane">
+											<img src="one-page/images/outdoor/3.jpg" alt="Mary Jane" width="450" height="650" decoding="async">
 										</div>
 										<div class="overlay">
 											<div class="text-overlay">
@@ -319,7 +338,7 @@
 					<article class="portfolio-item pf-media pf-icons">
 						<div class="portfolio-image">
 							<a href="portfolio-single.html">
-								<img src="demos/travel/images/packages/1.jpg" alt="Beach Activities">
+								<img src="demos/travel/images/packages/1.jpg" alt="Beach Activities" width="800" height="600" decoding="async" loading="lazy">
 								<div class="portfolio-overlay">
 									<div class="portfolio-desc">
 										<h3>Beach Activities</h3>
@@ -332,7 +351,7 @@
 					<article class="portfolio-item pf-illustrations">
 						<div class="portfolio-image">
 							<a href="portfolio-single.html">
-								<img src="demos/travel/images/packages/2.jpg" alt="Romantic Getaways">
+								<img src="demos/travel/images/packages/2.jpg" alt="Romantic Getaways" width="800" height="600" decoding="async" loading="lazy">
 								<div class="portfolio-overlay">
 									<div class="portfolio-desc">
 										<h3>Romantic Getaways</h3>
@@ -345,7 +364,7 @@
 					<article class="portfolio-item pf-graphics pf-uielements">
 						<div class="portfolio-image">
 							<a href="#">
-								<img src="demos/travel/images/packages/3.jpg" alt="Mountain Madness">
+								<img src="demos/travel/images/packages/3.jpg" alt="Mountain Madness" width="800" height="600" decoding="async" loading="lazy">
 								<div class="portfolio-overlay">
 									<div class="portfolio-desc">
 										<h3>Mountain Madness</h3>
@@ -358,7 +377,7 @@
 					<article class="portfolio-item pf-icons pf-illustrations">
 						<div class="portfolio-image">
 							<a href="portfolio-single.html">
-								<img src="demos/travel/images/packages/4.jpg" alt="Active Explorer">
+								<img src="demos/travel/images/packages/4.jpg" alt="Active Explorer" width="800" height="600" decoding="async" loading="lazy">
 								<div class="portfolio-overlay">
 									<div class="portfolio-desc">
 										<h3>Active Explorer</h3>
@@ -371,7 +390,7 @@
 					<article class="portfolio-item pf-uielements pf-media">
 						<div class="portfolio-image">
 							<a href="portfolio-single.html">
-								<img src="demos/travel/images/packages/5.jpg" alt="Icy Challenge">
+								<img src="demos/travel/images/packages/5.jpg" alt="Icy Challenge" width="800" height="600" decoding="async" loading="lazy">
 								<div class="portfolio-overlay">
 									<div class="portfolio-desc">
 										<h3>Icy Challenge</h3>
@@ -384,7 +403,7 @@
 					<article class="portfolio-item pf-graphics pf-illustrations">
 						<div class="portfolio-image">
 							<a href="portfolio-single.html">
-								<img src="demos/travel/images/packages/6.jpg" alt="Hill Trekking">
+								<img src="demos/travel/images/packages/6.jpg" alt="Hill Trekking" width="800" height="600" decoding="async" loading="lazy">
 								<div class="portfolio-overlay" data-lightbox="gallery">
 									<div class="portfolio-desc">
 										<h3>Hill Trekking</h3>
@@ -397,7 +416,7 @@
 					<article class="portfolio-item pf-uielements pf-icons">
 						<div class="portfolio-image">
 							<a href="portfolio-single-video.html">
-								<img src="demos/travel/images/packages/7.jpg" alt="Forest Camping">
+								<img src="demos/travel/images/packages/7.jpg" alt="Forest Camping" width="800" height="600" decoding="async" loading="lazy">
 								<div class="portfolio-overlay">
 									<div class="portfolio-desc">
 										<h3>Forest Camping</h3>
@@ -410,7 +429,7 @@
 					<article class="portfolio-item pf-graphics">
 						<div class="portfolio-image">
 							<a href="portfolio-single.html">
-								<img src="demos/travel/images/packages/8.jpg" alt="River Rafting">
+								<img src="demos/travel/images/packages/8.jpg" alt="River Rafting" width="800" height="600" decoding="async" loading="lazy">
 								<div class="portfolio-overlay">
 									<div class="portfolio-desc">
 										<h3>River Rafting</h3>
@@ -434,7 +453,7 @@
 							</div>
 							<div class="spost col-lg-12 col-md-6 noborder noleftpadding clearfix">
 								<div class="entry-image">
-									<a href="#"><img src="images/magazine/small/1.jpg" alt=""></a>
+									<a href="#"><img src="images/magazine/small/1.jpg" alt="" width="100" height="100" decoding="async" loading="lazy"></a>
 								</div>
 								<div class="entry-c">
 									<div class="entry-title">
@@ -447,7 +466,7 @@
 							</div>
 							<div class="spost col-lg-12 col-md-6 noborder noleftpadding clearfix">
 								<div class="entry-image">
-									<a href="#"><img src="images/magazine/small/2.jpg" alt=""></a>
+									<a href="#"><img src="images/magazine/small/2.jpg" alt="" width="100" height="100" decoding="async" loading="lazy"></a>
 								</div>
 								<div class="entry-c">
 									<div class="entry-title">
@@ -460,7 +479,7 @@
 							</div>
 							<div class="spost col-lg-12 col-md-6 noborder noleftpadding clearfix">
 								<div class="entry-image">
-									<a href="#"><img src="images/magazine/small/3.jpg" alt=""></a>
+									<a href="#"><img src="images/magazine/small/3.jpg" alt="" width="100" height="100" decoding="async" loading="lazy"></a>
 								</div>
 								<div class="entry-c">
 									<div class="entry-title">
@@ -473,7 +492,7 @@
 							</div>
 							<div class="spost col-lg-12 col-md-6 noborder noleftpadding clearfix">
 								<div class="entry-image">
-									<a href="#"><img src="images/magazine/small/4.jpg" alt=""></a>
+									<a href="#"><img src="images/magazine/small/4.jpg" alt="" width="100" height="100" decoding="async" loading="lazy"></a>
 								</div>
 								<div class="entry-c">
 									<div class="entry-title">
@@ -508,7 +527,7 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="entry-image nobottommargin">
-										<a href="#"><img src="demos/travel/images/blog/1.jpg" alt="Paris"></a>
+										<a href="#"><img src="demos/travel/images/blog/1.jpg" alt="Paris" width="300" height="225" decoding="async" loading="lazy"></a>
 									</div>
 								</div>
 								<div class="col-lg-6" style="margin-top: 20px;">
@@ -531,7 +550,7 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="entry-image nobottommargin">
-										<a href="#"><img src="demos/travel/images/blog/2.jpg" alt="Paris"></a>
+										<a href="#"><img src="demos/travel/images/blog/2.jpg" alt="Paris" width="300" height="225" decoding="async" loading="lazy"></a>
 									</div>
 								</div>
 								<div class="col-lg-6" style="margin-top: 20px;">
@@ -554,7 +573,7 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="entry-image nobottommargin">
-										<a href="#"><img src="demos/travel/images/blog/3.jpg" alt="Paris"></a>
+										<a href="#"><img src="demos/travel/images/blog/3.jpg" alt="Paris" width="300" height="225" decoding="async" loading="lazy"></a>
 									</div>
 								</div>
 								<div class="col-lg-6" style="margin-top: 20px;">
@@ -577,7 +596,7 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="entry-image nobottommargin">
-										<a href="#"><img src="demos/travel/images/blog/4.jpg" alt="Paris"></a>
+										<a href="#"><img src="demos/travel/images/blog/4.jpg" alt="Paris" width="300" height="225" decoding="async" loading="lazy"></a>
 									</div>
 								</div>
 								<div class="col-lg-6" style="margin-top: 20px;">
@@ -712,9 +731,6 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/plugins.js"></script>
 
-	<script src="https://maps.google.com/maps/api/js?key=AIzaSyDMxJ92oBkSnVNHFX3R8XhtYQPEgk1_IiI"></script>
-	<script type="text/javascript" src="js/jquery.gmap.js"></script>
-
 	<!-- Footer Scripts
 	============================================= -->
 	<script type="text/javascript" src="js/functions.js"></script>
@@ -728,8 +744,6 @@
 	<script src="js/components/datepicker.js"></script>
 	<!-- / -->
 
-	<script src="https://maps.google.com/maps/api/js?key=AIzaSyDMxJ92oBkSnVNHFX3R8XhtYQPEgk1_IiI"></script>
-	<script src="js/jquery.gmap.js"></script>
 	
 	<script>
 
@@ -740,7 +754,7 @@
 			});
 		});
 
-		jQuery(window).on( 'load', function(){
+		function initPopularMap() {
 
 			jQuery('#popular-dest-map').gMap({
 				address: 'Spain',
@@ -839,7 +853,34 @@
 				},
 				styles: [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}]
 			});
-		});
+		}
+
+		// The map sits in a column that is hidden below 768px, so the Maps API and
+		// the gMap plugin are only fetched (after window load) once it is displayed.
+		(function() {
+			var started = false;
+			function addScript(src, done) {
+				var s = document.createElement('script');
+				s.src = src;
+				s.onload = done;
+				document.body.appendChild(s);
+			}
+			function startMap() {
+				if (started) { return; }
+				started = true;
+				addScript('https://maps.google.com/maps/api/js?key=AIzaSyDMxJ92oBkSnVNHFX3R8XhtYQPEgk1_IiI', function() {
+					addScript('js/jquery.gmap.js', initPopularMap);
+				});
+			}
+			jQuery(window).on('load', function() {
+				var mq = window.matchMedia('(min-width: 768px)');
+				if (mq.matches) {
+					startMap();
+				} else {
+					mq.addEventListener('change', function(e) { if (e.matches) { startMap(); } });
+				}
+			});
+		})();
 
 	</script>
 
